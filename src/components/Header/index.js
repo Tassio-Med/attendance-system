@@ -17,16 +17,16 @@ export default function Header() {
         <img src={ user.avatarUrl === null ? avatar : user.avatarUrl } alt="Foto do perfil" />
       </div>
 
-      <Link>
-        <BiHomeCircle color='#fff' size={24}/>
+      <Link to="/dashboard">
+        <BiHomeCircle color='#fff' size={20}/>
         Chamados
       </Link>
-      <Link>
-        <BsPersonBadge color='#fff' size={24}/>
+      <Link to="/customers">
+        <BsPersonBadge color='#fff' size={20}/>
         Clientes
       </Link>
-      <Link>
-        <FiSettings color='#fff' size={24}/>
+      <Link to="/profile">
+        <FiSettings color='#fff' size={20}/>
         Configurações
       </Link>
     </div>
