@@ -9,7 +9,6 @@ export default function Dashboard() {
     <div>
       <Header/>
       <h1>PÁGINA DE DASHBOARD</h1>
-      <button onClick={ () => signOut() }>Sair</button>
     </div>
   )
 }
