@@ -34,6 +34,12 @@
   transform: scale(1.4);
 }
 
+.form-profile img{
+  margin-bottom: 1em;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .form-profile img, textarea, select{
   margin-bottom: .5em;
   font-size: 1.4em;
