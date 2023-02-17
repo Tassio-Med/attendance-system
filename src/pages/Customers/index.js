@@ -4,6 +4,10 @@ import './customers.css';
 import Title from '../../components/Title';
 import Header from '../../components/Header';
 
+import firebase from '../../services/firebaseConnection';
+
+import { toast } from 'react-toastify';
+
 import { BsFillPersonLinesFill } from 'react-icons/bs';
 
 export default function Customers(){
@@ -11,8 +15,30 @@ export default function Customers(){
   const [cnpj, setCnpj] = useState('');
   const [endereco, setEndereco] = useState('');
 
-  function handleAdd(e){
+  async function handleAdd(e){
     e.preventDefault();
+
+    if(nomeFantasia !== '' && cnpj !== '' && endereco !== ''){
+      await firebase.firestore().collection('customers')
+      .add({
+        nomeFantasia: nomeFantasia,
+        cnpj: cnpj,
+        endereco: endereco,
+        rua: endereco
+      })
+      .then(() => {
+        setNomeFantasia('');
+        setCnpj('');
+        setEndereco('');
+        toast.info('Sua empresa foi cadastrada com sucesso!');
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error('Erro ao cadastrar! Tente novamente.');
+      })
+    } else {
+      toast.error('Preencha todos os campos para cadastrar sua empresa!')
+    }
   }
 
   return(
@@ -29,7 +55,7 @@ export default function Customers(){
             <input type="text" placeholder='Nome da sua empresa' value={nomeFantasia} onChange={ (e) => setNomeFantasia(e.target.value) } />
 
             <label>CNPJ</label>
-            <input type="text" placeholder='CNPJ da sua empresa' value={cnpj} onChange={ (e) => setCnpj(e.target.value) } />
+            <input type="number" placeholder='CNPJ da sua empresa' value={cnpj} onChange={ (e) => setCnpj(e.target.value) } />
 
             <label>Endereço</label>
             <input type="text" placeholder='Endereço da sua empresa' value={endereco} onChange={ (e) => setEndereco(e.target.value) } />
