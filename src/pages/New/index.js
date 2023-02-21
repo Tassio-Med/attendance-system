@@ -1,34 +1,34 @@
-import React from 'react'
+
 import { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../../contexts/auth';
 
 import firebase from '../../services/firebaseConnection';
+
 import Header from '../../components/Header';
 import Title from '../../components/Title';
-
-import './new.css';
-import { BsPlusSquare } from 'react-icons/bs';
+import { AuthContext } from '../../contexts/auth';
 import { toast } from 'react-toastify';
 
+import './new.css';
+import { FiPlusCircle } from 'react-icons/fi'
 
-export default function New() {
-
+export default function New(){
+  
   const [loadCustomers, setLoadCustomers] = useState(true);
   const [customers, setCustomers] = useState([]);
-  const [customerSelected, setCustomerSelected] = useState([]);
-  
-  
+  const [customerSelected, setCustomerSelected] = useState(0);
+
   const [assunto, setAssunto] = useState('Suporte');
   const [status, setStatus] = useState('Aberto');
   const [complemento, setComplemento] = useState('');
-  
+
   const { user } = useContext(AuthContext);
 
-  useEffect(() => {
+
+  useEffect(()=> {
     async function loadCustomers(){
       await firebase.firestore().collection('customers')
       .get()
-      .then((snapshot) => {
+      .then((snapshot)=>{
         let lista = [];
 
         snapshot.forEach((doc) => {
@@ -40,7 +40,7 @@ export default function New() {
 
         if(lista.length === 0){
           console.log('NENHUMA EMPRESA ENCONTRADA');
-          setCustomers([{ id: '1', nomeFantasia: 'FREELA'}]);
+          setCustomers([ { id: '1', nomeFantasia: 'FREELA' } ]);
           setLoadCustomers(false);
           return;
         }
@@ -49,78 +49,86 @@ export default function New() {
         setLoadCustomers(false);
 
       })
-      .catch((error) => {
+      .catch((error)=>{
         console.log('DEU ALGUM ERRO!', error);
         setLoadCustomers(false);
-        setCustomers([{ id: '1', nomeFantasia: ''}]);
+        setCustomers([ { id: '1', nomeFantasia: '' } ]);
       })
+
     }
+
     loadCustomers();
+
   }, []);
+
 
   async function handleRegister(e){
     e.preventDefault();
 
-    await firebase.firestore.collection('chamados')
+    await firebase.firestore().collection('chamados')
     .add({
       created: new Date(),
       cliente: customers[customerSelected].nomeFantasia,
       clienteId: customers[customerSelected].id,
       assunto: assunto,
-      satatus: status,
+      status: status,
       complemento: complemento,
-      useId: user.uid
+      userId: user.uid
     })
-    .then(() => {
-      toast.error('Chamado criado com sucesso!');
+    .then(()=> {
+      toast.success('Chamado criado com sucesso!');
       setComplemento('');
       setCustomerSelected(0);
     })
-    .catch((err) => {
-      toast.error('Erro ao registrar, tente mais tarde.')
+    .catch((err)=> {
+      toast.error('Ops erro ao registrar, tente mais tarde.')
       console.log(err);
     })
-      
+
+
   }
 
+
+  //Chamado quando troca o assunto
   function handleChangeSelect(e){
     setAssunto(e.target.value);
-    console.log(e.target.value);
   }
 
+
+  //Chamado quando troca o status
   function handleOptionChange(e){
     setStatus(e.target.value);
-    console.log(e.target.value);
   }
 
+  //Chamado quando troca de cliente
   function handleChangeCustomers(e){
-    console.log('INDEX DO CLIENTE SELECIONADO: ', e.target.value);
-    console.log('Cliente selecionado ', customers[e.target.value]);
+    //console.log('INDEX DO CLIENTE SELECIONADO: ', e.target.value);
+    //console.log('Cliente selecionado ', customers[e.target.value])
     setCustomerSelected(e.target.value);
   }
 
-  return (
+  return(
     <div>
       <Header/>
 
-      <div className='content'>
+      <div className="content">
         <Title name="Novo chamado">
-          <BsPlusSquare size={24} />
+          <FiPlusCircle size={25} />
         </Title>
 
         <div className="container">
 
-          <form className="form-profile"  onSubmit={handleRegister}>
+          <form className="form-profile"  onSubmit={handleRegister} >
             
             <label>Cliente</label>
 
             {loadCustomers ? (
               <input type="text" disabled={true} value="Carregando clientes..." />
             ) : (
-                <select value={customerSelected} onChange={handleChangeCustomers}>
-                {customers.map((item,index) => {
+                <select value={customerSelected} onChange={handleChangeCustomers} >
+                {customers.map((item, index) => {
                   return(
-                    <option key={item.id} value={index}>
+                    <option key={item.id} value={index} >
                       {item.nomeFantasia}
                     </option>
                   )
@@ -178,6 +186,7 @@ export default function New() {
           </form>
 
         </div>
+
       </div>
     </div>
   )
