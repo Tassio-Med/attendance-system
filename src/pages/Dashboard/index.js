@@ -24,7 +24,7 @@ export default function Dashboard() {
           <div className='container dashboard'>
            <span>Nenhum chamado registrado...</span>
 
-           <Link className='new'>
+           <Link to="/new" className='new'>
              <BsPlusLg size={15} color="#fff"/>
              Novo chamado
            </Link>
@@ -32,7 +32,7 @@ export default function Dashboard() {
           
         ) : (
           <>
-            <Link className='new'>
+            <Link to="/new" className='new'>
              <BsPlusLg size={15} color="#fff"/>
              Novo chamado
            </Link>
