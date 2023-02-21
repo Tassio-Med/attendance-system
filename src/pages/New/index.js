@@ -8,6 +8,7 @@ import Title from '../../components/Title';
 
 import './new.css';
 import { BsPlusSquare } from 'react-icons/bs';
+import { toast } from 'react-toastify';
 
 
 export default function New() {
@@ -57,9 +58,29 @@ export default function New() {
     loadCustomers();
   }, []);
 
-  function handleRegister(e){
+  async function handleRegister(e){
     e.preventDefault();
-    alert('TESTE')
+
+    await firebase.firestore.collection('chamados')
+    .add({
+      created: new Date(),
+      cliente: customers[customerSelected].nomeFantasia,
+      clienteId: customers[customerSelected].id,
+      assunto: assunto,
+      satatus: status,
+      complemento: complemento,
+      useId: user.uid
+    })
+    .then(() => {
+      toast.error('Chamado criado com sucesso!');
+      setComplemento('');
+      setCustomerSelected(0);
+    })
+    .catch((err) => {
+      toast.error('Erro ao registrar, tente mais tarde.')
+      console.log(err);
+    })
+      
   }
 
   function handleChangeSelect(e){
