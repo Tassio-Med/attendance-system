@@ -37,12 +37,16 @@
 }
 
 table{
-  border:1px solid #CCC;
+  border: 1px solid #252525;
+  /* border-radius: 20px; */
   border-collapse: collapse;
   margin: 0;
   padding: 0;
   width: 100%;
   table-layout: fixed;
+  -webkit-box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
+  -moz-box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
+  box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
 }
 
 table caption{
@@ -51,9 +55,14 @@ table caption{
 }
 
 table tr{
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
+  background-color: #252525;
+  border: 1px solid #4c4c4c91;
+  /* border-radius: 20px; */
   padding: .35em;
+}
+
+table tbody tr:hover {
+  background-color: #4c4c4c91;
 }
 
 table th,
@@ -82,20 +91,35 @@ table td .action svg{
 }
 
 table td .badge{
-  padding: 3px;
+  padding: 5px;
   border-radius: 3px;
   color: #FFF;
 }
 
+.btn-box {
+  display: flex;
+  justify-content: center;
+}
+
 .btn-more {
+  display: flex;
   margin: 1.5em 0;
-  padding: .5em 1em;
+  padding: .5em 4em;
   height: 35px;
   border: 0;
   border-radius: 7px;
-  background-color: #181c2e;
+  background-color: #31407a;
   color: #fff;
   font-size: 1.1em;
+  transition: ease-in-out .4s;
+}
+
+.btn-more svg {
+  margin-right: .5rem;
+}
+
+.btn-more:hover{
+  background-color: #4459af;
 }
 
 @media screen and (max-width: 600px){

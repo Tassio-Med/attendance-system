@@ -16,7 +16,8 @@ html, body, #root{
 
 body{
   font: 14px 'Roboto', sans-serif;
-  background-color: #EFEFEF;
+  background-color: #1f1f1f;
+  color: white;
 }
 
 a{

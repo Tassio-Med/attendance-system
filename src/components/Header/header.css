@@ -2,16 +2,19 @@
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: rgb(90, 91, 92);
+  background-color: #252525;
   position: fixed;
   height: 100%;
   overflow: auto;
+  -webkit-box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
+  -moz-box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
+  box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
 }
 
 .sidebar div{
   height: 150px;
-  background-color: aliceblue;
-  padding-top: 30px;
+  background-color: #252525;
+  /* border-bottom: 6px white; */
   align-items: center;
   display: flex;
   justify-content: center;
@@ -44,7 +47,7 @@
 }
 
 .sidebar a:hover {
-  background-color: #121212;
+  background-color: #1f1f1f;
   color: #fff;
 }
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 import './signin.css';
 // import logo from '../../assets/logo.png';
-import logo from "../../assets/avatar_icon.png"
+import logo from "../../assets/logo-attendance.svg"
 
 function SignIn() {
   const [email, setEmail] = useState('');
@@ -22,8 +22,8 @@ function SignIn() {
   return (
     <div className="container-center">
       <div className="login">
-        <div className="login-area">
-          <img src={logo} alt="Sistema Logo" />
+        <div className="logo-area">
+          <img src={logo} alt="Logotipo do sistema" />
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -33,7 +33,7 @@ function SignIn() {
           <button type="submit">{ loadingAuth ? 'Carregando...' : 'Acessar' }</button>
         </form>  
 
-        <Link to="/register">Criar uma conta</Link>
+        <Link to="/register" className='new-profile'>Criar uma conta</Link>
       </div>
     </div>
   );

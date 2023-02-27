@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import {Link} from "react-router-dom";
 import { AuthContext } from '../../contexts/auth';
 // import "./signin.css";
-import logo from "../../assets/avatar_icon.png"
+import logo from "../../assets/logo-attendance.svg"
 
 function SignUp() {
   const [nome, setNome] = useState('');
@@ -34,7 +34,7 @@ function SignUp() {
           <button type="submit">{ loadingAuth ? 'Carregando...' : 'Acessar' }</button>
         </form>
 
-        <Link to="/">Já tem uma conta? Entre</Link>
+        <Link to="/" className="new-profile">Já tem uma conta? Entre</Link>
       </div>
     </div>
   );

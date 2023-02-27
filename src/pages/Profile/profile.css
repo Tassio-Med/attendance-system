@@ -1,16 +1,20 @@
 .container {
   display: flex;
-  background-color: #f8f8f8;
+  flex-direction: column;
+  align-items: center;
+  background-color: #252525;
   border-radius: 5px;
   padding: .8em;
   align-items: center;
   margin-bottom: 1em;
+  -webkit-box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
+  -moz-box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
+  box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
 }
 
 .label-avatar {
   width: 280px;
   height: 280px;
-  /* background-color: #121212; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,17 +61,30 @@
   cursor: not-allowed;
 }
 
+
 .form-profile button {
   max-width: 600px;
+  background-color: #31407a;
+  transition: ease-in-out .4s;
+}
+.form-profile button:hover {
+  max-width: 600px;
+  background-color: #4459af;
 }
 
 .logout-btn {
+  color: #4459af;
   padding: 8px 20px;
   background-color: transparent;
-  border: 1px solid #121212;
+  border: 1px solid #4459af;
   border-radius: 5px;
   font-size: 1.5em;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.logout-btn:hover {
+  color: #fefefe;
+  border: 1px solid #ffffff;
 }

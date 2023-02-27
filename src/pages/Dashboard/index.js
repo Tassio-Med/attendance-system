@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Title from '../../components/Title';
 import Modal from '../../components/Modal';
 import { FiMessageSquare, FiPlus, FiSearch, FiEdit2 } from 'react-icons/fi';
+import { CgDetailsMore } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 
@@ -143,7 +144,7 @@ export default function Dashboard(){
               Novo chamado
             </Link>
 
-            <table>
+            <table /*cellspacing="0" cellpadding="0"*/>
               <thead>
                 <tr>
                   <th scope="col">Cliente</th>
@@ -165,7 +166,7 @@ export default function Dashboard(){
                       <td data-label="Cadastrado">{item.createdFormated}</td>
                       <td data-label="#">
                         <button className="action" style={{backgroundColor: '#3583f6' }} onClick={ () => togglePostModal(item) }>
-                          <FiSearch color="#FFF" size={17} />
+                          <CgDetailsMore color="#FFF" size={17} />
                         </button>
                         <Link className="action" style={{backgroundColor: '#F6a935' }} to={`/new/${item.id}`}>
                           <FiEdit2 color="#FFF" size={17} />
@@ -176,9 +177,11 @@ export default function Dashboard(){
                 })}
               </tbody>
             </table>
-            
-            {loadingMore && <h3 style={{textAlign: 'center', marginTop: 15 }}>Buscando dados...</h3>}
-            { !loadingMore && !isEmpty && <button className="btn-more" onClick={handleMore}>Buscar mais</button> }
+            <div className='btn-box'>
+              
+              {loadingMore && <h3 style={{textAlign: 'center', marginTop: 15 }}>Buscando dados...</h3>}
+              { !loadingMore && !isEmpty && <button className="btn-more" onClick={handleMore}> <FiSearch color="#FFF" size={17} /> Buscar mais</button> }
+            </div>
 
           </>
         )}

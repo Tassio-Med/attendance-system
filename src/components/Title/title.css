@@ -4,8 +4,11 @@
   align-items: center;
   margin: 1em 0;
   border-radius: 5px;
-  background-color: #f8f8f8;
+  background-color: #252525;
   padding: .8em;
+  -webkit-box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
+  -moz-box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
+  box-shadow: -2px 2px 7px 5px rgba(0,0,0,0.13);
 }
 
 .title span{
